@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using UniDecAPI;
 
 namespace UniDec
 {
     class CodecExecutor
     {
+        public CodecExecutor(List<ICodec> codecs)
+        {
+            
+        }
     }
 }
