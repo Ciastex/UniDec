@@ -7,31 +7,36 @@ namespace UniDec
 {
     class CodecExecutor
     {
-        private List<ICodec> _codecs;
+        private readonly List<ICodec> _codecs;
  
         public CodecExecutor(List<ICodec> codecs)
         {
             _codecs = codecs;
         }
 
-        public void ExecuteDecoder(string codecCallName, string input)
+        public string ExecuteDecoder(string codecCallName, string input)
         {
             foreach (var codec in _codecs.Where(codec => codec.CallName == codecCallName))
             {
-                codec.Decode(input);
-                return;
+                return codec.Decode(input);
             }
             Console.WriteLine("No codec '{0}' found.", codecCallName);
+            return string.Empty;
         }
 
-        public void ExecuteEncoder(string codecCallName, string input)
+        public string ExecuteEncoder(string codecCallName, string input)
         {
             foreach (var codec in _codecs.Where(codec => codec.CallName == codecCallName))
             {
-                codec.Encode(input);
-                return;
+                return codec.Encode(input);
             }
             Console.WriteLine("No codec '{0}' found.", codecCallName);
+            return string.Empty;
+        }
+
+        public bool CodecExists(string codecCallName)
+        {
+            return _codecs.Any(codec => codec.CallName == codecCallName);
         }
     }
 }

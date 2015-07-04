@@ -15,9 +15,66 @@ namespace UniDec
             if(!CodecDirectoryExists())
                 Environment.Exit(0);
 
-            _codecLoader = new CodecLoader(CodecPath);
-            _codecExecutor = new CodecExecutor(_codecLoader.LoadCodecs());
+            if (args.Length > 3)
+            {
+                Console.WriteLine("Invalid usage.");
+                return;
+            }
 
+            _codecLoader = new CodecLoader(CodecPath);
+
+            _codecExecutor = new CodecExecutor(
+                _codecLoader.LoadCodecs()
+            );
+
+            var executedCallName = "";
+            var executeEncoder = false;
+            var codecInput = "";
+
+            var codecCallNameFound = false;
+            var codecTypeDetermined = false;
+
+            foreach (var arg in args)
+            {
+                if (_codecExecutor.CodecExists(arg))
+                {
+                    executedCallName = arg;
+                    codecCallNameFound = true;
+                    continue;
+                }
+
+                switch (arg)
+                {
+                    case "dec":
+                        executeEncoder = false;
+                        codecTypeDetermined = true;
+                        break;
+                    case "enc":
+                        executeEncoder = true;
+                        codecTypeDetermined = true;
+                        break;
+                }
+
+                if (codecCallNameFound && codecTypeDetermined)
+                    codecInput = arg;
+            }
+
+            if (executedCallName != "")
+            {
+                switch (executeEncoder)
+                {
+                    case true:
+                        _codecExecutor.ExecuteEncoder(executedCallName, codecInput);
+                        break;
+                    case false:
+                        _codecExecutor.ExecuteDecoder(executedCallName, codecInput);
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("No such codec found.");
+            }
         }
 
         static bool CodecDirectoryExists()
