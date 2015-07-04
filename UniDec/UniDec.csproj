@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArgumentParser.cs" />
     <Compile Include="CodecExecutor.cs" />
     <Compile Include="CodecLoader.cs" />
     <Compile Include="Program.cs" />
