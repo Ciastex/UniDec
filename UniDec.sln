@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniDec", "UniDec\UniDec.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniDecAPI", "UniDecAPI\UniDecAPI.csproj", "{51DBDBD0-7AFE-4656-9C0B-2EA47FFEF908}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniDec.Rot13.Codec", "UniDec.Rot13.Codec\UniDec.Rot13.Codec.csproj", "{FC6D2127-5855-4560-BF17-21E1DE977499}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{51DBDBD0-7AFE-4656-9C0B-2EA47FFEF908}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51DBDBD0-7AFE-4656-9C0B-2EA47FFEF908}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51DBDBD0-7AFE-4656-9C0B-2EA47FFEF908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC6D2127-5855-4560-BF17-21E1DE977499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC6D2127-5855-4560-BF17-21E1DE977499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC6D2127-5855-4560-BF17-21E1DE977499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC6D2127-5855-4560-BF17-21E1DE977499}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
