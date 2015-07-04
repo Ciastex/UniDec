@@ -33,27 +33,35 @@ namespace UniDec
             var executeEncoder = false;
             var codecInput = "";
 
+            var codecCallNameDetermined = false;
+            var codecTypeDetermined = false;
+
             var usedIndexes = new List<int>();
 
             for (var i = 0; i < args.Length; i++)
             {
-                if (_codecExecutor.CodecExists(args[i]))
+                if (_codecExecutor.CodecExists(args[i]) && !codecCallNameDetermined)
                 {
                     executedCallName = args[i];
                     usedIndexes.Add(i);
+                    codecCallNameDetermined = true;
                     continue;
                 }
 
-                switch (args[i])
+                if (!codecTypeDetermined)
                 {
-                    case "dec":
-                        executeEncoder = false;
-                        usedIndexes.Add(i);
-                        break;
-                    case "enc":
-                        executeEncoder = true;
-                        usedIndexes.Add(i);
-                        break;
+                    switch (args[i])
+                    {
+                        case "dec":
+                            usedIndexes.Add(i);
+                            codecTypeDetermined = true;
+                            break;
+                        case "enc":
+                            executeEncoder = true;
+                            usedIndexes.Add(i);
+                            codecTypeDetermined = true;
+                            break;
+                    }
                 }
             }
 
