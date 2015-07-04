@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace UniDec
 {
@@ -31,32 +33,37 @@ namespace UniDec
             var executeEncoder = false;
             var codecInput = "";
 
-            var codecCallNameFound = false;
-            var codecTypeDetermined = false;
+            var usedIndexes = new List<int>();
 
-            foreach (var arg in args)
+            for(var i = 0; i < args.Length; i++)
             {
-                if (_codecExecutor.CodecExists(arg))
+                if (_codecExecutor.CodecExists(args[i]))
                 {
-                    executedCallName = arg;
-                    codecCallNameFound = true;
+                    executedCallName = args[i];
+                    usedIndexes.Add(i);
                     continue;
                 }
 
-                switch (arg)
+                switch (args[i])
                 {
                     case "dec":
                         executeEncoder = false;
-                        codecTypeDetermined = true;
+                        usedIndexes.Add(i);
                         break;
                     case "enc":
                         executeEncoder = true;
-                        codecTypeDetermined = true;
+                        usedIndexes.Add(i);
                         break;
                 }
+            }
 
-                if (codecCallNameFound && codecTypeDetermined)
-                    codecInput = arg;
+            for (var j = 0; j < args.Length; j++)
+            {
+                if (usedIndexes.Contains(j))
+                    continue;
+
+                codecInput = args[j];
+                break;
             }
 
             if (executedCallName != "")
