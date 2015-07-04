@@ -8,7 +8,7 @@ namespace UniDec
     class CodecExecutor
     {
         private readonly List<ICodec> _codecs;
- 
+
         public CodecExecutor(List<ICodec> codecs)
         {
             _codecs = codecs;
@@ -32,6 +32,22 @@ namespace UniDec
             }
             Console.WriteLine("No codec '{0}' found.", codecCallName);
             return string.Empty;
+        }
+
+        public List<string[]> GetCodecs()
+        {
+            var codecInfos = new List<string[]>();
+
+            foreach (var codec in _codecs)
+            {
+                var codecInfo = new string[2];
+
+                codecInfo[0] = codec.CallName;
+                codecInfo[1] = codec.FriendlyName;
+
+                codecInfos.Add(codecInfo);
+            }
+            return codecInfos;
         }
 
         public bool CodecExists(string codecCallName)

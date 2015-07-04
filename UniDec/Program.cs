@@ -17,17 +17,33 @@ namespace UniDec
             if (!CodecDirectoryExists())
                 Environment.Exit(0);
 
-            if (args.Length > 3)
-            {
-                Console.WriteLine("Invalid usage.");
-                return;
-            }
-
             _codecLoader = new CodecLoader(CodecPath);
 
             _codecExecutor = new CodecExecutor(
                 _codecLoader.LoadCodecs()
             );
+
+            if (args.Length < 3)
+            {
+                if (args[0] == "list")
+                {
+                    foreach (var codecInfo in _codecExecutor.GetCodecs())
+                    {
+                        Console.WriteLine("Codec '{0}': '{1}'", codecInfo[1], codecInfo[0]);
+                    }
+                    return;
+                }
+                
+                if (args[0] == "help")
+                {
+                    PrintUsage();
+                    return;
+                }
+
+                Console.WriteLine("Invalid usage.");
+                PrintUsage();
+                return;
+            }
 
             var executedCallName = "";
             var executeEncoder = false;
@@ -107,6 +123,13 @@ namespace UniDec
                 return false;
             }
             return true;
+        }
+
+        static void PrintUsage()
+        {
+            Console.WriteLine("Usage: [help | list] | <codec call name> <enc | dec> <input>");
+            Console.WriteLine("    help: this message");
+            Console.WriteLine("    list: List all available plugins (format: Codec 'FRIENDLY_NAME': CALL_NAME)");
         }
     }
 }
