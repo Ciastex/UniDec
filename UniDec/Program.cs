@@ -7,18 +7,21 @@ namespace UniDec
     {
         static void Main(string[] args)
         {
-            CodecDirectoryCheck();
+            if(!CodecDirectoryExists())
+                Environment.Exit(0);
         }
 
-        static void CodecDirectoryCheck()
+        static bool CodecDirectoryExists()
         {
             if (!Directory.Exists("./codecs"))
             {
                 Console.WriteLine("No codecs detected.");
                 Console.WriteLine("Creating new folder for codecs. You need to drop codec DLLs there to use UniDec.");
                 Directory.CreateDirectory("./codecs");
-                Environment.Exit(0);
+
+                return false;
             }
+            return true;
         }
     }
 }
