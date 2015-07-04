@@ -19,6 +19,11 @@ namespace UniDec
         public List<ICodec> LoadCodecs()
         {
             var filePaths = Directory.GetFiles(_path, "*.Codec.dll");
+            if (filePaths.Length == 0)
+            {
+                Console.WriteLine("No codecs detected.");
+                return new List<ICodec>();
+            }
 
             return (
                 from path 

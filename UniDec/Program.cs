@@ -14,7 +14,7 @@ namespace UniDec
 
         static void Main(string[] args)
         {
-            if(!CodecDirectoryExists())
+            if (!CodecDirectoryExists())
                 Environment.Exit(0);
 
             if (args.Length > 3)
@@ -35,7 +35,7 @@ namespace UniDec
 
             var usedIndexes = new List<int>();
 
-            for(var i = 0; i < args.Length; i++)
+            for (var i = 0; i < args.Length; i++)
             {
                 if (_codecExecutor.CodecExists(args[i]))
                 {
@@ -71,16 +71,20 @@ namespace UniDec
                 switch (executeEncoder)
                 {
                     case true:
-                        _codecExecutor.ExecuteEncoder(executedCallName, codecInput);
+                        Console.WriteLine(
+                            _codecExecutor.ExecuteEncoder(executedCallName, codecInput)
+                        );
                         break;
                     case false:
-                        _codecExecutor.ExecuteDecoder(executedCallName, codecInput);
+                        Console.WriteLine(
+                            _codecExecutor.ExecuteDecoder(executedCallName, codecInput)
+                        );
                         break;
                 }
             }
             else
             {
-                Console.WriteLine("No such codec found.");
+                Console.WriteLine("Codec does not exist.");
             }
         }
 
