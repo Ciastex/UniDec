@@ -29,7 +29,25 @@ namespace UniDec
                 }
                 Console.WriteLine("No codec '{0}' found.", codecCallName);
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unable to decode.");
+                WriteExceptionToFile(true, ex, codecCallName);
+            }
+            return string.Empty;
+        }
+
+        public string ExecuteDecoder(string codecCallName, string input, string key)
+        {
+            try
+            {
+                foreach (var codec in _codecs.Where(codec => codec.CallName == codecCallName))
+                {
+                    return codec.Decode(input, key);
+                }
+                Console.WriteLine("No codec '{0}' found.", codecCallName);
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("Unable to decode.");
                 WriteExceptionToFile(true, ex, codecCallName);
@@ -44,6 +62,24 @@ namespace UniDec
                 foreach (var codec in _codecs.Where(codec => codec.CallName == codecCallName))
                 {
                     return codec.Encode(input);
+                }
+                Console.WriteLine("No codec '{0}' found.", codecCallName);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unable to encode.");
+                WriteExceptionToFile(false, ex, codecCallName);
+            }
+            return string.Empty;
+        }
+
+        public string ExecuteEncoder(string codecCallName, string input, string key)
+        {
+            try
+            {
+                foreach (var codec in _codecs.Where(codec => codec.CallName == codecCallName))
+                {
+                    return codec.Encode(input, key);
                 }
                 Console.WriteLine("No codec '{0}' found.", codecCallName);
             }
