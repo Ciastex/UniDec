@@ -9,38 +9,48 @@ namespace UniDec.WSFTPLegacy.Codec
         public string CallName { get { return "wsftp-le"; } }
         public bool NeedsKey { get { return false; } }
 
+        private string Preamble = "PWD=V";
+        private readonly Random _random = new Random();
         public string Decode(string input)
         {
-            var actualInput = input;
-
-            if (!input.Contains("PWD="))
+            try
             {
-                actualInput = "PWD=" + input;
-            }
-            var decodedText = "";
-            var pw = actualInput.Substring(37, actualInput.Length - 37);
+                var actualInput = input;
 
-            for (var i = 0; i < pw.Length / 2; i++)
-            {
-                var character = pw.Substring(i * 2, 2);
-                var salt = actualInput.Substring(5 + i, (6 + i) - (5 + i));
-                var decodedCharacter = Convert.ToInt32(character, 16) - i - 1 - ((47 + Convert.ToInt32(salt, 16)) % 57);
-                decodedText += (char)decodedCharacter;
+                if (!input.Contains("PWD="))
+                {
+                    actualInput = "PWD=" + input;
+                }
+                var decodedText = "";
+                var pw = actualInput.Substring(37, actualInput.Length - 37);
+
+                for (var i = 0; i < pw.Length / 2; i++)
+                {
+                    var character = pw.Substring(i * 2, 2);
+                    var salt = actualInput.Substring(5 + i, (6 + i) - (5 + i));
+                    var decodedCharacter = Convert.ToInt32(character, 16) - i - 1 -
+                                           ((47 + Convert.ToInt32(salt, 16)) % 57);
+                    decodedText += (char)decodedCharacter;
+                }
+                return decodedText;
             }
-            return decodedText;
+            catch
+            {
+                return "Invalid string specified.";
+            }
         }
 
         public string Encode(string input)
         {
-            var random = new Random();
+            if (input.Length > 32)
+                return "Password too long (32 characters maximum).";
 
-            var preamble = "PWD=V";
             var salt = "";
-            var encodedString = preamble;
+            var encodedString = Preamble;
 
             for (var i = 0; i < 32; i++)
             {
-                salt += random.Next(0, 15).ToString("X");
+                salt += _random.Next(0, 15).ToString("X");
             }
             encodedString += salt;
 
