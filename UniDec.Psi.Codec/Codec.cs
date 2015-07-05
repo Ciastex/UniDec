@@ -52,7 +52,7 @@ namespace UniDec.Psi.Codec
 
         public string Encode(string input, string key)
         {
-            var encodedPassword = string.Empty;
+            var encodedPassword = new StringBuilder();
 
             int passwordIndex;
             var keyIndex = 0;
@@ -65,14 +65,14 @@ namespace UniDec.Psi.Codec
                 var x = input[passwordIndex] ^ key[keyIndex++];
                 var result = x.ToString("X4");
 
-                encodedPassword += result;
+                encodedPassword.Append(result);
 
                 if (keyIndex >= key.Length)
                 {
                     keyIndex = 0;
                 }
             }
-            return encodedPassword;
+            return encodedPassword.ToString();
         }
     }
 }
