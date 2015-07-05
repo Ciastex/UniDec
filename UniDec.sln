@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniDec.WSFTP12.Codec", "Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniDec.Psi.Codec", "UniDec.Psi.Codec\UniDec.Psi.Codec.csproj", "{CE72313F-E239-44E3-ACDA-08CC169AE872}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniDec.Base64.Codec", "UniDec.Base64.Codec\UniDec.Base64.Codec.csproj", "{0929663F-BF46-46AB-A7DF-9E01A32359AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CE72313F-E239-44E3-ACDA-08CC169AE872}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE72313F-E239-44E3-ACDA-08CC169AE872}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE72313F-E239-44E3-ACDA-08CC169AE872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0929663F-BF46-46AB-A7DF-9E01A32359AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0929663F-BF46-46AB-A7DF-9E01A32359AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0929663F-BF46-46AB-A7DF-9E01A32359AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0929663F-BF46-46AB-A7DF-9E01A32359AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
