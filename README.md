@@ -13,7 +13,7 @@ unidec.exe [help | list] <codec> <enc | dec> <input> [-k key]
 |codec| Specifies a codec you want to use. | This argument is required.|
 |enc/dec| Tells UniDec to invoke the encode/decode given text using the specified codec. | Only one of these can be invoked at once.|
 |input| Text you want UniDec to encode/decode. |
-|-k| Tells UniDec to use the specified key for encoding/decoding the given text. | The next value immediately to this argument becomes a key. |
+|-k| Tells UniDec to use the specified key for encoding/decoding the given text. | The next value immediately after this argument becomes a key. |
 
 
 ### Q & A
@@ -21,7 +21,7 @@ unidec.exe [help | list] <codec> <enc | dec> <input> [-k key]
 ```
 unidec.exe codecname The enc test string -k key for encryption
 ```
-UniDec does not care about the argument order and if you're not a fan of readable commands, it will gladly encrypt the text correctly, just like:
+UniDec does not care about the argument order and if you're not a fan of readable commands, it will gladly encrypt the text in a correct, just like this:
 ```
 unidec.exe codecname enc The test string for encryption -k key 
 ```
