@@ -43,7 +43,15 @@ namespace UniDec.WSFTP12.Codec
             ICryptoTransform transform = tripleDes.CreateDecryptor();
 
             byte[] decodedArray = transform.TransformFinalBlock(inputArray, 0, inputArray.Length);
-            return Encoding.UTF8.GetString(decodedArray);
+            var result = Encoding.UTF8.GetString(decodedArray);
+
+            if (result.Contains(" "))
+            {
+                // don't need the currently unknown value, so split
+                return result.Split(' ')[0];
+            }
+            // probably decrypting own hash, so no split needed
+            return result;
         }
 
         public string Encode(string input)
