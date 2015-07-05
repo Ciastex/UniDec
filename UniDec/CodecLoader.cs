@@ -24,7 +24,7 @@ namespace UniDec
             if (filePaths.Length == 0)
             {
                 Console.WriteLine("No codecs detected.");
-                return new List<ICodec>();
+                return list;
             }
 
             foreach (var path in filePaths)
