@@ -9,6 +9,7 @@ namespace UniDec.WSFTP12.Codec
     {
         public string FriendlyName { get { return "WS FTP Professional version >12.0"; } }
         public string CallName { get { return "wsftp12"; } }
+        public bool NeedsKey { get { return false; } }
 
         private readonly byte[] _wsftpkey = {
             0xE1, 0xF0, 0xC3, 0xD2, 0xA5, 0xB4, 0x87, 0x96,
@@ -71,6 +72,16 @@ namespace UniDec.WSFTP12.Codec
             //  NOTE: It's correct, though.
             byte[] encodedArray = transform.TransformFinalBlock(inputArray, 0, inputArray.Length);
             return Convert.ToBase64String(encodedArray);
+        }
+
+        public string Decode(string input, string key)
+        {
+            return "No key needed.";
+        }
+
+        public string Encode(string input, string key)
+        {
+            return "No key needed.";
         }
     }
 }
