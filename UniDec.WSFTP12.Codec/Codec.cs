@@ -46,12 +46,6 @@ namespace UniDec.WSFTP12.Codec
             byte[] decodedArray = transform.TransformFinalBlock(inputArray, 0, inputArray.Length);
             var result = Encoding.UTF8.GetString(decodedArray);
 
-            if (result.Contains(" "))
-            {
-                // don't need the currently unknown value, so split
-                return result.Split(' ')[0];
-            }
-            // probably decrypting own hash, so no split needed
             return result;
         }
 
