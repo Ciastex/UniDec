@@ -14,6 +14,9 @@ namespace UniDec
         public CodecExecutor(List<ICodec> codecs)
         {
             _codecs = codecs;
+
+            if (!Directory.Exists(ExceptionLogDirectory))
+                Directory.CreateDirectory(ExceptionLogDirectory);
         }
 
         public string ExecuteDecoder(string codecCallName, string input)
