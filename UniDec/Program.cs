@@ -23,6 +23,12 @@ namespace UniDec
                 _codecLoader.LoadCodecs()
             );
 
+            if (args.Length == 0)
+            {
+                PrintUsage();
+                return;
+            }
+
             if (args.Length < 3)
             {
                 if (args[0] == "list")
@@ -40,7 +46,6 @@ namespace UniDec
                     return;
                 }
 
-                Console.WriteLine("Invalid usage.");
                 PrintUsage();
                 return;
             }
