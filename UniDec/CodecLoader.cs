@@ -27,27 +27,9 @@ namespace UniDec
                 return list;
             }
 
-            foreach (var path in filePaths)
+            foreach (var types in filePaths.Select(Assembly.LoadFrom).Select(assembly => assembly.GetExportedTypes()))
             {
-                var assembly = Assembly.LoadFrom(path);
-                var types = assembly.GetExportedTypes();
-                foreach (var type in types)
-                {
-                    var codecInstance = ActivateCodec(type);
-
-                    foreach (var codec in list)
-                    {
-                        if (codec.CallName == codecInstance.CallName)
-                        {
-                            Console.WriteLine("Can't activate the codec: '{0}'. Call name already registered.",
-                                Path.GetFileName(assembly.Location));
-                        }
-                        else
-                        {
-                            list.Add(codec);
-                        }
-                    }
-                }
+                list.AddRange(types.Select(ActivateCodec));
             }
             return list;
         }
