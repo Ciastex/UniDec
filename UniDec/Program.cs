@@ -52,7 +52,7 @@ namespace UniDec
 
             var executedCallName = "";
             var executeEncoder = false;
-            var codecKey = "";
+            var codecKey = string.Empty;
 
             var codecCallNameDetermined = false;
             var codecTypeDetermined = false;
@@ -67,6 +67,7 @@ namespace UniDec
                 {
                     codecKey = args[i];
                     nextArgIsKey = false;
+                    usedIndexes.Add(i);
                     continue;
                 }
 
@@ -98,6 +99,8 @@ namespace UniDec
                 {
                     nextArgIsKey = true;
                     keyDetermined = true;
+
+                    usedIndexes.Add(i);
                 }
             }
 
@@ -112,13 +115,13 @@ namespace UniDec
                         if (codecKey != string.Empty)
                         {
                             Console.WriteLine(
-                                _codecExecutor.ExecuteEncoder(executedCallName, codecInput)
+                                _codecExecutor.ExecuteEncoder(executedCallName, codecInput, codecKey)
                             );
                         }
                         else
                         {
                             Console.WriteLine(
-                                _codecExecutor.ExecuteEncoder(executedCallName, codecInput, codecKey)
+                                _codecExecutor.ExecuteEncoder(executedCallName, codecInput)
                             );
                         }
                         break;
@@ -126,13 +129,13 @@ namespace UniDec
                         if (codecKey != string.Empty)
                         {
                             Console.WriteLine(
-                                _codecExecutor.ExecuteDecoder(executedCallName, codecInput)
+                                _codecExecutor.ExecuteDecoder(executedCallName, codecInput, codecKey)
                             );
                         }
                         else
                         {
                             Console.WriteLine(
-                                _codecExecutor.ExecuteDecoder(executedCallName, codecInput, codecKey)
+                                _codecExecutor.ExecuteDecoder(executedCallName, codecInput)
                             );
                         }
                         break;
