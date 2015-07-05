@@ -81,14 +81,8 @@ namespace UniDec
                 }
             }
 
-            for (var j = 0; j < args.Length; j++)
-            {
-                if (usedIndexes.Contains(j))
-                    continue;
-
-                codecInput = args[j];
-                break;
-            }
+            var inputStrings = args.Where((t, j) => !usedIndexes.Contains(j)).ToArray();
+            codecInput = string.Join(" ", inputStrings);
 
             if (executedCallName != "")
             {
