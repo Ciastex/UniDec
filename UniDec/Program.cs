@@ -29,7 +29,7 @@ namespace UniDec
                 {
                     foreach (var codecInfo in _codecExecutor.GetCodecs())
                     {
-                        Console.WriteLine("Codec '{0}': '{1}'", codecInfo[1], codecInfo[0]);
+                        Console.WriteLine("Codec '{0}': '{1}' - {2}", codecInfo[1], codecInfo[0], codecInfo[2]);
                     }
                     return;
                 }
@@ -154,9 +154,10 @@ namespace UniDec
 
         static void PrintUsage()
         {
-            Console.WriteLine("Usage: [help | list] | <codec call name> <enc | dec> <input>");
+            Console.WriteLine("Usage: [help | list] | <codec call name> <enc | dec> <input> [-k KEY]");
             Console.WriteLine("    help: this message");
             Console.WriteLine("    list: List all available plugins (format: Codec 'FRIENDLY_NAME': CALL_NAME)");
+            Console.WriteLine("    -k KEY: specify KEY for encoding/decoding");
         }
     }
 }
