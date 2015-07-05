@@ -6,6 +6,7 @@ namespace UniDec.Rot13.Codec
     {
         public string FriendlyName { get { return "ROT13"; } }
         public string CallName { get { return "rot13"; } }
+        public bool NeedsKey { get { return false; } }
 
         public string Decode(string input)
         {
@@ -15,6 +16,16 @@ namespace UniDec.Rot13.Codec
         public string Encode(string input)
         {
             return Transform(input);
+        }
+
+        public string Decode(string input, string key)
+        {
+            return "No key needed.";
+        }
+
+        public string Encode(string input, string key)
+        {
+            return "No key needed.";
         }
 
         private string Transform(string what)
