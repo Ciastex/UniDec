@@ -18,6 +18,8 @@ namespace UniDec
 
         public List<ICodec> LoadCodecs()
         {
+            var list = new List<ICodec>();
+
             var filePaths = Directory.GetFiles(_path, "*.Codec.dll");
             if (filePaths.Length == 0)
             {
@@ -25,18 +27,32 @@ namespace UniDec
                 return new List<ICodec>();
             }
 
-            return (
-                from path 
-                in filePaths 
-                select Assembly.LoadFrom(path) 
-                into assembly 
-                from type 
-                in assembly.GetExportedTypes() 
-                select ActivateCodec(type)
-            ).ToList();
+            foreach (var path in filePaths)
+            {
+                var assembly = Assembly.LoadFrom(path);
+                var types = assembly.GetExportedTypes();
+                foreach (var type in types)
+                {
+                    var codecInstance = ActivateCodec(type);
+
+                    foreach (var codec in list)
+                    {
+                        if (codec.CallName == codecInstance.CallName)
+                        {
+                            Console.WriteLine("Can't activate the codec: '{0}'. Call name already registered.",
+                                Path.GetFileName(assembly.Location));
+                        }
+                        else
+                        {
+                            list.Add(codec);
+                        }
+                    }
+                }
+            }
+            return list;
         }
 
-        private ICodec ActivateCodec(Type assemblyType)
+        private static ICodec ActivateCodec(Type assemblyType)
         {
             if (assemblyType.GetInterface(typeof(ICodec).Name) == null)
                 return null;
