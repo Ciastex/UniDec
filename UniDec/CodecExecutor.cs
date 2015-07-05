@@ -97,10 +97,11 @@ namespace UniDec
 
             foreach (var codec in _codecs)
             {
-                var codecInfo = new string[2];
+                var codecInfo = new string[3];
 
                 codecInfo[0] = codec.CallName;
                 codecInfo[1] = codec.FriendlyName;
+                codecInfo[2] = codec.NeedsKey ? "NEEDS KEY" : "DOESN'T NEED KEY";
 
                 codecInfos.Add(codecInfo);
             }
