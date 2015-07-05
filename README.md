@@ -1,5 +1,5 @@
 # UniDec
-Universal passwords coder/decoder. Plug-in based approach allows everyone to write their own codecs.
+Universal password encoder/decoder. Plug-in based approach allows everyone to write their own codecs.
 
 ### Usage
 ```
@@ -11,7 +11,7 @@ unidec.exe [help | list] <codec> <enc | dec> <input> [-k key]
 |help| Displays usage informations | Has to be the only one parameter. |
 |list| Displays a list of all usable codecs | As above. |
 |codec| Specifies a codec you want to use. | This argument is required.|
-|enc/dec| Tells UniDec to invoke the encode/decode given text using the specified codec. | Only one of these can be invoked at once.|
+|enc/dec| Tells UniDec encode/decode given text using the specified codec. | Only one of these can be specified at once.|
 |input| Text you want UniDec to encode/decode. |
 |-k| Tells UniDec to use the specified key for encoding/decoding the given text. | The next value immediately after this argument becomes a key. |
 
