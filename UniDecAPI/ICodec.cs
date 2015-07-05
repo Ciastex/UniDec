@@ -4,6 +4,7 @@
     {
         string FriendlyName { get; }
         string CallName { get; }
+        bool NeedsKey { get; }
 
         string Decode(string input);
         string Encode(string input);
