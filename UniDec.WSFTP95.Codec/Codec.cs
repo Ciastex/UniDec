@@ -11,6 +11,9 @@ namespace UniDec.WSFTP95.Codec
 
         public string Decode(string input)
         {
+            if (input.Length % 2 != 0)
+                return "Invalid string specified.";
+
             var decodedText = string.Empty;
 
             for (var i = 0; i < input.Length / 2; i++)
