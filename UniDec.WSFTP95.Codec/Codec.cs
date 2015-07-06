@@ -29,11 +29,12 @@ namespace UniDec.WSFTP95.Codec
         {
             var encodedText = string.Empty;
 
-            for (var i = 0; i < input.Length / 2; i++)
+            for (var i = 0; i < input.Length; i++)
             {
-                var character = input.Substring(i * 2, 2);
-                var encodedCharacter = Convert.ToInt32(character, 16) + i;
-                encodedText += (char)encodedCharacter;
+                var shiftCharacter = input[i] + i;
+                var encodedCharacter = string.Format("{0:X2}", shiftCharacter);
+
+                encodedText += encodedCharacter;
             }
             return encodedText;
         }
