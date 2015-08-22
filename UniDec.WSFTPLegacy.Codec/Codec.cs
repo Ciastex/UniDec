@@ -9,7 +9,7 @@ namespace UniDec.WSFTPLegacy.Codec
         public string CallName { get { return "wsftp-le"; } }
         public bool NeedsKey { get { return false; } }
 
-        private string Preamble = "PWD=V";
+        private string _preamble = "PWD=V";
         private readonly Random _random = new Random();
         public string Decode(string input)
         {
@@ -46,7 +46,7 @@ namespace UniDec.WSFTPLegacy.Codec
                 return "Password too long (32 characters maximum).";
 
             var salt = "";
-            var encodedString = Preamble;
+            var encodedString = _preamble;
 
             for (var i = 0; i < 32; i++)
             {
