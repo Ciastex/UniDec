@@ -17,7 +17,7 @@ unidec.exe [help | list] <codec> <enc | dec> <input> [-k key]
 
 
 ### Q & A
-#####The following line is executed correctly, why?
+##### The following line is executed correctly, why?
 ```
 unidec.exe codecname The enc test string -k key for encryption
 ```
@@ -27,7 +27,7 @@ unidec.exe codecname enc The test string for encryption -k key
 ```
 The same rule applies for the decryption process, but it's very unlikely for it to work with a codec, because codecs operate on hashes (most of the time).
 
-#####I want to write a plug-in codec, how?
+##### I want to write a plug-in codec, how?
 Everything you need is already in the solution, but if it's unclear to you, here's the basic breakdown.
 First, you have to inherit from the main ICodec interface, like this:
 ```C#
